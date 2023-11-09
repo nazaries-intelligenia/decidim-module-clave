@@ -34,19 +34,19 @@ module ClaveServices
     # Embed signature
     #
     # <Signature>
-    # <SignedInfo>
-    # <CanonicalizationMethod />
-    # <SignatureMethod />
-    # <Reference>
-    # <Transforms>
-    # <Transform>
-    # <Transform>
-    # <DigestMethod>
-    # <DigestValue>
-    # </Reference>
-    # </SignedInfo>
-    # <SignatureValue />
-    # <KeyInfo />
+    #   <SignedInfo>
+    #     <CanonicalizationMethod />
+    #     <SignatureMethod />
+    #     <Reference>
+    #       <Transforms>
+    #       <Transform>
+    #       <Transform>
+    #       <DigestMethod>
+    #       <DigestValue>
+    #     </Reference>
+    #   </SignedInfo>
+    #   <SignatureValue />
+    #   <KeyInfo />
     # </Signature>
     def sign_document(document)
       noko = Nokogiri::XML(document.to_s) do |config|
