@@ -1,0 +1,12 @@
+---
+es:
+  decidim:
+    system:
+      organizations:
+        omniauth_settings:
+          clave:
+            idp_certificate: Certificado del proveedor de identidat, o IdP
+            idp_sso_service_url: IdP SSO service URL
+            sp_certificate: Certificado del Sp, o proveedor de servicios
+            sp_entity_id: ID del Sp, o entidad proveedora de servicios
+            sp_private_key: Clave privada del Sp, o proveedor de servicios
