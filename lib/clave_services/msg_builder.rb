@@ -6,6 +6,7 @@ module ClaveServices
   NOKOGIRI_OPTIONS = Nokogiri::XML::ParseOptions::STRICT |
                      Nokogiri::XML::ParseOptions::NONET
 
+  # Generates a signed version of the XML to be sent to Cl@ve as request.
   class MsgBuilder
     def initialize
       @uuid = OneLogin::RubySaml::Utils.uuid
@@ -24,6 +25,7 @@ module ClaveServices
       xml_str.gsub("<saml2p:Extensions>", "#{request_doc.root.children.second}<saml2p:Extensions>")
     end
 
+    # rubocop: disable Metrics/AbcSize
     def filled_template
       template= pristine_template
       template= template.gsub(":{id}", uuid)
@@ -34,6 +36,7 @@ module ClaveServices
       callback_url= "#{@request.base_url}/users/auth/clave/callback"
       template.gsub(":{callback_url}", callback_url)
     end
+    # rubocop: enable Metrics/AbcSize
 
     def pristine_template
       @pristine_template||= <<~EOTEMPLATE.squish

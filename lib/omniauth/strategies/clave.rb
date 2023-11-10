@@ -11,7 +11,7 @@ module OmniAuth
     # - https://github.com/omniauth/omniauth-oauth2/blob/master/lib/omniauth/strategies/oauth2.rb
     class Clave < ::OmniAuth::Strategies::SAML
       # constructor arguments after `app`, the first argument, that should be a RackApp
-      args [:client_id, :client_secret, :idp_sso_service_url]
+      args %i[client_id client_secret idp_sso_service_url]
 
       def info
         # invoke OmniAuth::Strategy#info

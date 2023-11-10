@@ -8,7 +8,7 @@ if ActiveModel::Type::Boolean.new.cast(Rails.application.secrets.dig(:omniauth, 
   Rails.application.config.middleware.use OmniAuth::Builder do
     provider(
       :clave,
-      setup: lambda { |env| Decidim::Clave.setup_clave_env(env) },
+      setup: ->(env) { Decidim::Clave.setup_clave_env(env) },
       scope: :autenticacio_usuari
     )
   end

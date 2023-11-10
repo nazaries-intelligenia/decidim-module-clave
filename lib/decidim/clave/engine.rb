@@ -2,6 +2,7 @@
 
 module Decidim
   module Clave
+    # Engine to integrate with the Rails application.
     class Engine < ::Rails::Engine
       isolate_namespace Decidim::Clave
 

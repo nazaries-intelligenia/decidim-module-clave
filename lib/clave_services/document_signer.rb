@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ClaveServices
+  # Signs documents conforming with the xmldsig structure.
   class DocumentSigner
     C14N = "http://www.w3.org/2001/10/xml-exc-c14n#"
     CANON_ALGORITHM = Nokogiri::XML::XML_C14N_EXCLUSIVE_1_0
@@ -48,6 +49,8 @@ module ClaveServices
     #   <SignatureValue />
     #   <KeyInfo />
     # </Signature>
+    #
+    # rubocop: disable Metrics/AbcSize
     def sign_document(document)
       noko = Nokogiri::XML(document.to_s) do |config|
         config.options = ::ClaveServices::NOKOGIRI_OPTIONS
@@ -100,6 +103,7 @@ module ClaveServices
         end
       end
     end
+    # rubocop: enable Metrics/AbcSize
 
     protected
 

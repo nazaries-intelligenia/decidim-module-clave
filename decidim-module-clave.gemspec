@@ -30,10 +30,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "decidim", Decidim::Clave::DECIDIM_MIN_VERSION
-  spec.add_dependency "rails", ">= 6"
   spec.add_dependency "omniauth-rails_csrf_protection", "~> 1.0"
   spec.add_dependency "omniauth-saml", "~> 2.1.0"
+  spec.add_dependency "rails", ">= 6"
 
   spec.add_development_dependency "decidim-dev", Decidim::Clave::DECIDIM_MIN_VERSION
   spec.add_development_dependency "faker"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
