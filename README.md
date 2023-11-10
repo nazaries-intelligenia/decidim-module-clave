@@ -21,6 +21,7 @@ default: &default
   omniauth:
     clave:
       enabled: true
+      icon_path: media/images/clave-icon.svg
       sp_entity_id: <%= ENV["CLAVE_SP_ENTITY_ID"] %>
       idp_sso_service_url: <%= ENV["CLAVE_IDP_SSO_SERVICE_URL"] %>
       sp_certificate: "<%= ENV["CLAVE_SP_CERTIFICATE"] %>"
