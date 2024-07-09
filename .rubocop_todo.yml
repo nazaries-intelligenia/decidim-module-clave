@@ -1,0 +1,11 @@
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/concerns/decidim/clave/devise/omniauth_registrations_controller_override.rb'
+
+RSpec/FilePath:
+  Exclude:
+    - 'spec/lib/omniauth/strategies/clave_spec.rb'
+
+RSpec/SpecFilePathFormat:
+  Exclude:
+    - 'spec/lib/omniauth/strategies/clave_spec.rb'

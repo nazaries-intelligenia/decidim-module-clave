@@ -7,13 +7,11 @@ gemspec
 
 require_relative "lib/decidim/clave/version"
 
-# temporal solution while gems embrace new psych 4 (the default in Ruby 3.1) behavior.
-gem "psych", "< 4"
-
 group :development, :test do
   gem "bootsnap", require: false
   gem "byebug", platform: :mri
-  gem "decidim", Decidim::Clave::DECIDIM_MIN_VERSION, require: true
+  gem "decidim", Decidim::Clave::DECIDIM_VERSION, require: true
+  gem "faker"
   gem "letter_opener_web"
   gem "listen"
 end

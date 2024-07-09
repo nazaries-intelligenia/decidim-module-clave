@@ -14,6 +14,10 @@ module Decidim
       initializer "decidim_clave.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
+
+      config.to_prepare do
+        Decidim::Devise::OmniauthRegistrationsController.include(Decidim::Clave::Devise::OmniauthRegistrationsControllerOverride)
+      end
     end
   end
 end

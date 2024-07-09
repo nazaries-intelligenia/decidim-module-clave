@@ -3,7 +3,6 @@
 require "spec_helper"
 require "omniauth/strategies/clave"
 
-# rubocop: disable Metrics/BlockLength
 RSpec.describe OmniAuth::Strategies::Clave do
   # subject is what the app responds
   subject { strategy.call(env) }
@@ -29,7 +28,7 @@ RSpec.describe OmniAuth::Strategies::Clave do
       "PATH_INFO" => "/users/auth/clave/callback",
       "rack.input" => true,
       "rack.request.form_input" => true,
-      "rack.request.form_hash" => { "SAMLResponse"=>saml_response },
+      "rack.request.form_hash" => { "SAMLResponse" => saml_response },
       "omniauth.strategy" => strategy
     }
   end
@@ -52,9 +51,9 @@ RSpec.describe OmniAuth::Strategies::Clave do
   end
 
   before do
-    OmniAuth.config.full_host= "http://localhost:3000"
+    OmniAuth.config.full_host = "http://localhost:3000"
     allow(strategy).to receive(:session).and_return({})
-    Rails.application.secrets.omniauth[:clave]= {
+    Rails.application.secrets.omniauth[:clave] = {
       enabled: true,
       sp_entity_id: "S000000E_E00000000;SPTestApp",
       idp_sso_service_url: "https://clave.example.es",
@@ -71,7 +70,7 @@ RSpec.describe OmniAuth::Strategies::Clave do
   end
 
   it "has correct args" do
-    expect(strategy.class.args).to eq(%i[client_id client_secret idp_sso_service_url])
+    expect(strategy.class.args).to eq([:client_id, :client_secret, :idp_sso_service_url])
   end
 
   it "has correct site" do
@@ -79,7 +78,7 @@ RSpec.describe OmniAuth::Strategies::Clave do
   end
 
   it "has correct form" do
-    expect(strategy.options[:form]).to be_kind_of(Decidim::Clave::ClaveAutosubmitForm)
+    expect(strategy.options[:form]).to be_a(Decidim::Clave::ClaveAutosubmitForm)
   end
 
   describe "callback_call" do
@@ -99,8 +98,7 @@ RSpec.describe OmniAuth::Strategies::Clave do
 
     describe "#callback_url" do
       before do
-        allow(strategy).to receive(:script_name).and_return("")
-        allow(strategy).to receive(:query_string).and_return("")
+        allow(strategy).to receive_messages(script_name: "", query_string: "")
       end
 
       it "is a combination of host, script name, and callback path" do

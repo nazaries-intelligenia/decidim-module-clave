@@ -50,7 +50,6 @@ module ClaveServices
     #   <KeyInfo />
     # </Signature>
     #
-    # rubocop: disable Metrics/AbcSize
     def sign_document(document)
       noko = Nokogiri::XML(document.to_s) do |config|
         config.options = ::ClaveServices::NOKOGIRI_OPTIONS
@@ -59,7 +58,7 @@ module ClaveServices
       signature_element = REXML::Element.new("ds:Signature").add_namespace("ds", DSIG)
       signed_info_element = signature_element.add_element("ds:SignedInfo")
       signed_info_element.add_element("ds:CanonicalizationMethod", { "Algorithm" => C14N })
-      signed_info_element.add_element("ds:SignatureMethod", { "Algorithm"=>SIGN_METHOD })
+      signed_info_element.add_element("ds:SignatureMethod", { "Algorithm" => SIGN_METHOD })
 
       # Add Reference
       reference_element = signed_info_element.add_element("ds:Reference", { "URI" => "##{document.uuid}" })
