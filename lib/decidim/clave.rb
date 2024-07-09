@@ -10,21 +10,20 @@ module Decidim
 
     # Renders the form with the request to Cl@ve. The form autosubmits itself via JS.
     class ClaveAutosubmitForm
-      # rubocop: disable Metrics/AbcSize
       def call(env)
-        settings= OneLogin::RubySaml::Settings.new(env["omniauth.strategy"].options)
+        settings = OneLogin::RubySaml::Settings.new(env["omniauth.strategy"].options)
         request = Rack::Request.new(env)
-        request_str= ::ClaveServices::MsgBuilder.new.build(request, settings)
+        request_str = ::ClaveServices::MsgBuilder.new.build(request, settings)
         noko = Nokogiri::XML(request_str) do |config|
           config.options = ClaveServices::NOKOGIRI_OPTIONS
           config.noblanks
           config.strict.noblanks
         end
-        request_str= noko.to_xml(indent_text: "", indent: 0).gsub("\n", "").gsub("<?xml version=\"1.0\"?>", "")
+        request_str = noko.to_xml(indent_text: "", indent: 0).gsub("\n", "").gsub("<?xml version=\"1.0\"?>", "")
 
         base64_request = Base64.strict_encode64(request_str)
-        base64_request= CGI.escapeHTML(base64_request)
-        rq_value= base64_request
+        base64_request = CGI.escapeHTML(base64_request)
+        rq_value = base64_request
 
         html = <<~EOHTML
           <!DOCTYPE html>
@@ -52,7 +51,7 @@ module Decidim
       request = Rack::Request.new(env)
       organization = Decidim::Organization.find_by(host: request.host)
       org_config = organization.enabled_omniauth_providers[:clave]
-      conf= env["omniauth.strategy"].options
+      conf = env["omniauth.strategy"].options
       conf.merge!(Decidim::Clave::STRATEGY_STATIC_CONFIG)
       conf[:sp_entity_id] =
         org_config[:sp_entity_id].presence || Rails.application.secrets.omniauth.dig(:clave, :sp_entity_id)
@@ -71,7 +70,7 @@ module Decidim
     end
     # rubocop: enable Metrics/AbcSize
 
-    STRATEGY_STATIC_CONFIG= {
+    STRATEGY_STATIC_CONFIG = {
       # response config
       form: ClaveAutosubmitForm.new,
       double_quote_xml_attribute_values: true,
@@ -79,7 +78,7 @@ module Decidim
       skip_audience: true,
       attribute_statements: {
         name: ["http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName", "name"],
-        email: %w[email mail],
+        email: %w(email mail),
         first_name: ["http://eidas.europa.eu/attributes/naturalperson/CurrentGivenName", "first_name", "firstname",
                      "firstName"],
         first_surname: ["http://es.minhafp.clave/FirstSurname", "first_name", "firstname", "firstName"],

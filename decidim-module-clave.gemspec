@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "Decidim omniauth sign up and sign in with Cl@ve."
   spec.homepage = "http://github.com/CodiTramunana/decidim-module-clave"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.2"
+  spec.required_ruby_version = ">= 3.1.1"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -29,12 +29,11 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "decidim", Decidim::Clave::DECIDIM_MIN_VERSION
+  spec.add_dependency "decidim", Decidim::Clave::COMPAT_DECIDIM_VERSION
   spec.add_dependency "omniauth-rails_csrf_protection", "~> 1.0"
   spec.add_dependency "omniauth-saml", "~> 2.1.0"
   spec.add_dependency "rails", ">= 6"
 
-  spec.add_development_dependency "decidim-dev", Decidim::Clave::DECIDIM_MIN_VERSION
-  spec.add_development_dependency "faker"
+  spec.add_development_dependency "decidim-dev", Decidim::Clave::COMPAT_DECIDIM_VERSION
   spec.metadata["rubygems_mfa_required"] = "true"
 end
