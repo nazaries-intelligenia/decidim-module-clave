@@ -2,8 +2,8 @@
 
 module Decidim
   module Clave
-    VERSION = "0.0.2"
-    DECIDIM_VERSION = "0.28.1"
-    COMPAT_DECIDIM_VERSION = [">= 0.28", "< 0.29"].freeze
+    VERSION = "0.0.3"
+    DECIDIM_VERSION = "0.29.0"
+    COMPAT_DECIDIM_VERSION = [">= 0.29", "< 0.30"].freeze
   end
 end
