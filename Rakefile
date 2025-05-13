@@ -18,6 +18,20 @@ task test_app: "decidim:generate_external_test_app" do
   install_module("spec/decidim_dummy_app")
 end
 
+def install_module(path)
+  Dir.chdir(path) do
+    system("bundle exec rake decidim_kids:install:migrations")
+    system("bundle exec rake db:migrate")
+    system("bundle exec rake decidim_kids:install:handlers")
+  end
+end
+
+def seed_db(path)
+  Dir.chdir(path) do
+    system("bundle exec rake db:seed")
+  end
+end
+
 desc "Generates a development app."
 task :development_app do
   Bundler.with_original_env do
