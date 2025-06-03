@@ -11,3 +11,8 @@ require "rubocop/rake_task"
 RuboCop::RakeTask.new
 
 task default: [:spec, :rubocop]
+
+desc "Generates a dummy app for testing"
+task test_app: "decidim:generate_external_test_app" do
+  ENV["RAILS_ENV"] = "test"
+end

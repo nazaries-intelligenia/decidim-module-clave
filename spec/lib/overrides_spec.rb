@@ -9,7 +9,7 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      "/app/controllers/decidim/devise/omniauth_registrations_controller.rb" => "d2470bf88b509572affa7f225f6ee424"
+      "/app/controllers/decidim/devise/omniauth_registrations_controller.rb" => "530b390d63f5b7872e5ef5d72d4be646"
     }
   }
 ]
